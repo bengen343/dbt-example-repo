@@ -1,0 +1,72 @@
+# Name your project! Project names should contain only lowercase characters
+# and underscores. A good package name should reflect your organization's
+# name or the intended use of these models
+name: 'loom'
+version: '1.0.0'
+config-version: 2
+
+# This setting configures which "profile" dbt uses for this project.
+profile: 'loom'
+
+# These configurations specify where dbt should look for different types of files.
+# The `model-paths` config, for example, states that models in this project can be
+# found in the "models/" directory. You probably won't need to change these!
+analysis-paths: ["analyses"]
+macro-paths: ["macros"]
+model-paths: ["models"]
+seed-paths: ["seeds"]
+snapshot-paths: ["snapshots"]
+test-paths: ["tests"]
+
+target-path: "target"  # directory which will store compiled SQL files
+clean-targets:         # directories to be removed by `dbt clean`
+  - "target"
+  - "dbt_packages"
+
+# Configuration to allow performance monitoring
+query-comment:
+  comment: "{{ query_comment(node) }}"
+  append: true # Required for Snowflake
+
+seeds:
+  +database: dbt_test
+  +schema: seeds
+
+# dbt-native testing configuration
+data_tests:
+  +severity: warn # all tests will warn rather than fail
+  +store_failures: true # write test failures to a table in Snowflake
+
+vars:
+  # General vars
+  LOCAL_CUTOFF_DATE: "2026-07-01 00:00:00"
+  DBT_SNOWFLAKE_SOURCE_DATABASE: "DBT_PROD"
+
+
+# Configuring models
+# Full documentation: https://docs.getdbt.com/docs/configuring-models
+
+# In dbt, the default materialization for a model is a view. This means, when you run 
+# dbt run or dbt build, all of your models will be built as a view in your data platform. 
+# The configuration below will override this setting for models in the example folder to 
+# instead be materialized as tables. Any models you add to the root of the models folder will 
+# continue to be built as views. These settings can be overridden in the individual model files
+# using the `{{ config(...) }}` macro.
+models:
+  loom:
+    # Applies to all files under models
+    +persist_docs:
+      relation: true
+      columns: true
+    incoming_sources:
+      +schema: incoming_sources
+    infrastructure:
+      +schema: infrastructure
+    marts:
+      +schema: marts
+    users:
+      +schema: users
+    utility:
+      +schema: utility
+    web_application:
+      +schema: web_application

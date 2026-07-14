@@ -1,0 +1,81 @@
+version: 2
+
+models:
+  - name: bse_snowflake__query_attribution_history
+    description: '{{ doc("bse_snowflake__query_attribution_history") }}'
+    config:
+      tags: ["base", "incremental", "infrastructure", "snowflake"]
+    columns:
+      - name: _DBT_PROCESSED_AT
+        description: "{{ doc('_dbt_processed_at') }}"
+        tests:
+          - not_null
+
+      - name: DBT_INVOCATION_ID
+        description: "{{ doc('dbt_invocation_id') }}"
+
+      - name: DIM_END_DATETIME
+        description: "{{ doc('dim_end_datetime') }}"
+
+      - name: DIM_INCREMENTAL_STRATEGY_DBT
+        description: "{{ doc('dim_incremental_strategy_dbt') }}"
+
+      - name: DIM_MATERIALIZATION_DBT
+        description: "{{ doc('dim_materialization_dbt') }}"
+
+      - name: DIM_MODEL_NAME_DBT
+        description: "{{ doc('dim_model_name_dbt') }}"
+
+      - name: DIM_PACKAGE_NAME_DBT
+        description: "{{ doc('dim_package_name_dbt') }}"
+
+      - name: DIM_START_DATETIME
+        description: "{{ doc('dim_start_datetime') }}"
+
+      - name: DIM_USER_NAME_DBT
+        description: "{{ doc('dim_user_name_dbt') }}"
+
+      - name: DIM_USER_NAME_SNOWFLAKE
+        description: "{{ doc('dim_user_name_snowflake') }}"
+
+      - name: DIM_WAREHOUSE_NAME
+        description: "{{ doc('dim_warehouse_name') }}"
+
+      - name: INFO_QUERY_HASH
+        description: "{{ doc('info_query_hash') }}"
+
+      - name: INFO_QUERY_PARAMETERIZED_HASH
+        description: "{{ doc('info_query_parameterized_hash') }}"
+
+      - name: INFO_QUERY_TAG
+        description: "{{ doc('info_query_tag') }}"
+
+      - name: INFO_REFS_DBT
+        description: "{{ doc('info_refs_dbt') }}"
+
+      - name: INFO_SOURCES_DBT
+        description: "{{ doc('info_sources_dbt') }}"
+
+      - name: INFO_TAGS_DBT
+        description: "{{ doc('info_tags_dbt') }}"
+
+      - name: MET_CREDITS_ATTRIBUTED_COMPUTE
+        description: "{{ doc('met_credits_attributed_compute') }}"
+
+      - name: MET_CREDITS_USED_QUERY_ACCELERATION
+        description: "{{ doc('met_credits_used_query_acceleration') }}"
+
+      - name: SF_PARENT_QUERY_ID
+        description: "{{ doc('sf_parent_query_id') }}"
+
+      - name: SF_QUERY_ID
+        description: "{{ doc('sf_query_id') }}"
+        tests:
+          - unique
+          - not_null
+
+      - name: SF_ROOT_QUERY_ID
+        description: "{{ doc('sf_root_query_id') }}"
+
+      - name: SF_WAREHOUSE_ID
+        description: "{{ doc('sf_warehouse_id') }}"

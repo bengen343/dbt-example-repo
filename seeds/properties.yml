@@ -1,0 +1,196 @@
+version: 2
+
+seeds:
+  - name: expected_mrt_dbt_model_invocations
+    config:
+      column_types:
+        dbt_invocation_id: varchar
+        dim_database_name: varchar
+        dim_end_datetime: timestamp_ntz
+        dim_execution_start_datetime: timestamp_ntz
+        dim_incremental_strategy_dbt: varchar
+        dim_materialization_dbt: varchar
+        dim_model_name_dbt: varchar
+        dim_outbound_cloud_transfer: varchar
+        dim_outbound_region_transfer: varchar
+        dim_package_name_dbt: varchar
+        dim_role_name: varchar
+        dim_role_type: varchar
+        dim_schema_name: varchar
+        dim_start_datetime: timestamp_ntz
+        dim_user_name_dbt: varchar
+        dim_user_name_snowflake: varchar
+        dim_warehouse_name: varchar
+        dim_warehouse_size: varchar
+        dim_warehouse_type: varchar
+        info_refs_dbt: variant
+        info_sources_dbt: variant
+        info_tags_dbt: variant
+        is_full_refresh: boolean
+        met_bytes_deleted: number
+        met_bytes_read_from_result: number
+        met_bytes_scanned: number
+        met_bytes_sent_over_network: number
+        met_bytes_spilled_to_local_storage: number
+        met_bytes_spilled_to_remote_storage: number
+        met_bytes_written: number
+        met_bytes_written_to_result: number
+        met_child_queries_wait_millis: number
+        met_compilation_millis: number
+        met_credits_attributed_compute: float
+        met_credits_used_cloud: float
+        met_credits_used_compute: float
+        met_credits_used_query_acceleration: number
+        met_execution_millis: number
+        met_external_function_invocations: number
+        met_external_function_received_bytes: number
+        met_external_function_received_rows: number
+        met_external_function_sent_bytes: number
+        met_external_function_sent_rows: number
+        met_fault_handling_millis: number
+        met_inbound_cloud_transfer: number
+        met_inbound_region_transfer: number
+        met_inbound_transfer_bytes: number
+        met_list_external_files_millis: number
+        met_outbound_transfer_bytes: number
+        met_partitions_scanned: number
+        met_partitions_total: number
+        met_query_acceleration_bytes_scanned: number
+        met_query_acceleration_partitions_scanned: number
+        met_query_runtime_millis: number
+        met_query_runtime_seconds: float
+        met_queued_overload_millis: number
+        met_queued_provisioning_millis: number
+        met_rows_deleted: number
+        met_rows_inserted: number
+        met_rows_produced: float
+        met_rows_unloaded: number
+        met_rows_updated: number
+        met_rows_written_to_result: number
+        met_total_elapsed_millis: number
+        met_transaction_blocked_millis: number
+        sf_database_id: varchar
+        sf_query_id: varchar
+        sf_schema_id: varchar
+        sf_session_id: varchar
+        sf_transaction_id: varchar
+        sf_warehouse_id: varchar
+
+
+  - name: seed__snowflake__account_usage__query_attribution_history
+    config:
+      column_types:
+        credits_attributed_compute: float
+        credits_used_query_acceleration: float
+        end_time: timestamp_ltz
+        parent_query_id: varchar
+        query_hash: varchar
+        query_id: varchar
+        query_parameterized_hash: varchar
+        query_tag: varchar
+        root_query_id: varchar
+        start_time: timestamp_ltz
+        user_name: varchar
+        warehouse_id: number
+        warehouse_name: varchar
+
+
+  - name: seed__snowflake__account_usage__query_history
+    config:
+      column_types:
+        authn_event_id: number
+        bind_values: variant
+        bytes_deleted: number
+        bytes_read_from_result: number
+        bytes_scanned: number
+        bytes_sent_over_the_network: number
+        bytes_spilled_to_local_storage: number
+        bytes_spilled_to_remote_storage: number
+        bytes_written: number
+        bytes_written_to_result: number
+        child_queries_wait_time: number
+        cluster_number: number
+        compilation_time: number
+        credits_used_cloud_services: float
+        database_id: number
+        database_name: varchar
+        end_time: timestamp_ltz
+        error_code: varchar
+        error_message: varchar
+        execution_status: varchar
+        execution_time: number
+        external_function_total_invocations: number
+        external_function_total_received_bytes: number
+        external_function_total_received_rows: number
+        external_function_total_sent_bytes: number
+        external_function_total_sent_rows: number
+        fault_handling_time: number
+        inbound_data_transfer_bytes: number
+        inbound_data_transfer_cloud: varchar
+        inbound_data_transfer_region: varchar
+        is_client_generated_statement: boolean
+        list_external_files_time: number
+        outbound_data_transfer_bytes: number
+        outbound_data_transfer_cloud: varchar
+        outbound_data_transfer_region: varchar
+        partitions_scanned: number
+        partitions_total: number
+        percentage_scanned_from_cache: float
+        query_acceleration_bytes_scanned: number
+        query_acceleration_partitions_scanned: number
+        query_acceleration_upper_limit_scale_factor: number
+        query_hash: varchar
+        query_hash_version: number
+        query_id: varchar
+        query_load_percent: number
+        query_parameterized_hash: varchar
+        query_parameterized_hash_version: number
+        query_retry_cause: varchar
+        query_retry_time: number
+        query_tag: varchar
+        query_text: varchar
+        query_type: varchar
+        queued_overload_time: number
+        queued_provisioning_time: number
+        queued_repair_time: number
+        release_version: varchar
+        role_name: varchar
+        role_type: varchar
+        rows_deleted: number
+        rows_inserted: number
+        rows_produced: number
+        rows_unloaded: number
+        rows_updated: number
+        rows_written_to_result: number
+        schema_id: number
+        schema_name: varchar
+        secondary_role_stats: varchar
+        session_id: number
+        start_time: timestamp_ltz
+        total_elapsed_time: number
+        transaction_blocked_time: number
+        transaction_id: number
+        user_database_id: number
+        user_database_name: varchar
+        user_name: varchar
+        user_schema_id: number
+        user_schema_name: varchar
+        user_type: varchar
+        warehouse_id: number
+        warehouse_name: varchar
+        warehouse_size: varchar
+        warehouse_type: varchar
+
+
+  - name: seed__snowflake__account_usage__warehouse_metering_history
+    config:
+      column_types:
+        credits_attributed_compute_queries: number
+        credits_used: number
+        credits_used_cloud_services: number
+        credits_used_compute: number
+        end_time: timestamp_ltz
+        start_time: timestamp_ltz
+        warehouse_id: number
+        warehouse_name: varchar
+

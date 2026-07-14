@@ -1,0 +1,57 @@
+loom:
+  target: prod
+  outputs:
+    dev:
+      type: snowflake
+      account: 
+      user: DBT_SVC
+      role: DBT_DEV
+      private_key_path: /home/vscode/.ssh/dbt_svc.p8
+      database: DBT_DEV
+      schema: LOOM
+      warehouse: XS_WH
+      threads: 8
+
+    local:
+      type: snowflake
+      account: 
+      user: DBT_SVC
+      role: DBT_DEV
+      private_key_path: /home/vscode/.ssh/dbt_svc.p8
+      database: "{{ env_var('DBT_SNOWFLAKE_DATABASE', default='NONE') }}"
+      schema: LOOM
+      warehouse: XS_WH
+      threads: 8
+      
+    test:
+      type: snowflake
+      account: 
+      user: DBT_SVC
+      role: DBT_DEV
+      private_key_path: /home/vscode/.ssh/dbt_svc.p8
+      database: DBT_TEST
+      schema: LOOM
+      warehouse: XS_WH
+      threads: 8      
+
+    staging:
+      type: snowflake
+      account: 
+      user: DBT_SVC
+      role: DBT_DEV
+      private_key_path: /home/vscode/.ssh/dbt_svc.p8
+      database: DBT_STAGING
+      schema: LOOM
+      warehouse: XS_WH
+      threads: 8
+
+    prod:
+      type: snowflake
+      account: 
+      user: DBT_SVC
+      role: DBT_PROD
+      private_key_path: /home/vscode/.ssh/dbt_svc.p8
+      database: DBT_PROD
+      schema: LOOM
+      warehouse: XS_WH
+      threads: 8

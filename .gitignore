@@ -1,0 +1,24 @@
+# Distribution / packaging
+dbt_packages/
+
+# dbt
+target/
+dbt_packages/
+logs/
+.user.yml
+
+# Environments
+.env
+.DS_Store
+.venv
+dbt_internal_packages/
+env/
+ENV/
+env.bak/
+notebooks/
+venv/
+venv.bak/
+
+# IPython
+ipython_config.py
+profile_default/

@@ -1,0 +1,24 @@
+name: Trigger dbt cloud test run
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: dbt-labs/dbt-cloud-job-action@v6.0.0
+        id: dbt_cloud_job_run
+        with:
+          dbt_cloud_url: https://XXXX.us1.dbt.com/
+          dbt_cloud_token: ${{ secrets.DBTCLOUDAPIKEY }}
+          dbt_cloud_account_id: 'XXXX'
+          dbt_cloud_job_id: 'XXXXXX'
+          git_branch: ${{ github.head_ref }}
+          failure_on_error: true
+          get_artifacts: false
+          fetch_catalog: false

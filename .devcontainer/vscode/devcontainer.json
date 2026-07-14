@@ -1,0 +1,93 @@
+{
+	"name": "VSCode Local Dev Container",
+	"image": "mcr.microsoft.com/devcontainers/python:3.12-bullseye",
+	"remoteUser": "vscode",
+	"runArgs": ["--env-file", "${localWorkspaceFolder}/.env"],
+	"mounts": [
+		"source=${localEnv:HOME}/.dbt,target=/home/vscode/.dbt,type=bind", // mount your dbt cloud auth file as downloaded from https://wt028.us1.dbt.com/settings/profile/cloud-cli
+		"source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind" // mount if git authentication uses SSH
+	],
+	"workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/${localWorkspaceFolderBasename},type=bind,consistency=cached",
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"dbt.dbtPath": "/home/vscode/.local/bin/dbt",
+				"dbt.targetName": "local",
+				"dbt.profileName": "loom",
+				"workbench.colorCustomizations": {
+					"activityBar.background": "#fe6703",
+					"titleBar.activeBackground": "#fe8331",
+					"titleBar.activeForeground": "#f8fafa"
+				},
+				"files.associations": {
+					"*.sql": "sql",
+                    "**/notebooks/*.sql": "snowflake-sql",
+					"*.yml": "yaml"
+				},
+				"[sql]": {
+					"editor.defaultFormatter": "dbtLabsInc.dbt",
+					"editor.formatOnSave": true
+				},
+				"[yaml]": {
+					"editor.defaultFormatter": "dbtLabsInc.dbt",
+					"editor.formatOnSave": true
+				},
+				"[python]": {
+					"editor.defaultFormatter": "charliermarsh.ruff",
+					"editor.formatOnSave": true
+				},
+				"yaml.schemas": {
+					"https://raw.githubusercontent.com/dbt-labs/dbt-jsonschema/main/schemas/latest/dbt_yml_files-latest.json": [
+						"/**/*.yml",
+						"!profiles.yml",
+						"!dbt_project.yml",
+						"!packages.yml",
+						"!selectors.yml",
+						"!profile_template.yml",
+						"!package-lock.yml"
+					],
+					"https://raw.githubusercontent.com/dbt-labs/dbt-jsonschema/main/schemas/latest/dbt_project-latest.json": [
+						"dbt_project.yml"
+					],
+					"https://raw.githubusercontent.com/dbt-labs/dbt-jsonschema/main/schemas/latest/selectors-latest.json": [
+						"selectors.yml"
+					],
+					"https://raw.githubusercontent.com/dbt-labs/dbt-jsonschema/main/schemas/latest/packages-latest.json": [
+						"packages.yml"
+					]
+				}
+			},
+			"extensions": [
+				"anthropic.claude-code",
+				"charliermarsh.ruff",
+                "dbtlabsinc.dbt",
+				"eamodio.gitlens",
+				"EditorConfig.EditorConfig",
+				"github.codespaces",
+				"github.copilot",
+				"github.copilot-chat",
+				"janisdd.vscode-edit-csv",
+				"mechatroner.rainbow-csv", 
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"ms-toolsai.jupyter",
+				"snowflake.snowflake-vsc",
+				"stuart.unique-window-colors",
+				"tamasfe.even-better-toml" 
+			]
+		}
+	},
+	"features": {
+	"ghcr.io/devcontainers/features/common-utils:2": {
+		"installZsh": true,
+		"username": "vscode",
+		"upgradePackages": true
+	},
+	"ghcr.io/devcontainers/features/python:1": {
+		"version": "3.12",
+		"installTools": true
+	}
+	},
+	"postCreateCommand": "bash -c 'export SHELL=/bin/bash && curl -fsSL https://public.cdn.getdbt.com/fs/install/install.sh | sh -s -- --update && pip3 install -r requirements.txt && pre-commit install && curl -fsSL https://claude.ai/install.sh | bash'"
+}

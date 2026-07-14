@@ -1,0 +1,41 @@
+
+version: 2
+
+models:
+  - name: bse_snowflake__warehouse_metering_history
+    description: '{{ doc("bse_snowflake__warehouse_metering_history") }}'
+    config:
+      tags: ["base", "incremental", "infrastructure", "snowflake"]
+
+    columns:
+      - name: _DBT_PROCESSED_AT
+        description: "{{ doc('_dbt_processed_at') }}"
+        tests:
+          - not_null
+
+      - name: DIM_END_DATETIME
+        description: "{{ doc('dim_end_datetime') }}"
+
+      - name: DIM_START_DATETIME
+        description: "{{ doc('dim_start_datetime') }}"
+
+      - name: DIM_WAREHOUSE_NAME
+        description: "{{ doc('dim_warehouse_name') }}"
+
+      - name: DW_METERING_HISTORY_ID
+        description: "{{ doc('dw_metering_history_id') }}"
+        tests:
+          - unique
+          - not_null
+
+      - name: MET_CREDITS_USED
+        description: "{{ doc('met_credits_used') }}"
+
+      - name: MET_CREDITS_USED_CLOUD_SERVICES
+        description: "{{ doc('met_credits_used_cloud_services') }}"
+
+      - name: MET_CREDITS_USED_COMPUTE
+        description: "{{ doc('met_credits_used_compute') }}"
+
+      - name: SF_WAREHOUSE_ID
+        description: "{{ doc('sf_warehouse_id') }}"

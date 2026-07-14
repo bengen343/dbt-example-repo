@@ -1,0 +1,268 @@
+version: 2
+
+models:
+  - name: bse_snowflake__query_history
+    description: '{{ doc("bse_snowflake__query_history") }}'
+    config:
+      tags: ["base", "incremental", "infrastructure", "snowflake"]
+    columns:
+      - name: _DBT_PROCESSED_AT
+        description: "{{ doc('_dbt_processed_at') }}"
+        tests:
+          - not_null
+
+      - name: DBT_INVOCATION_ID
+        description: "{{ doc('dbt_invocation_id') }}"
+
+      - name: DIM_CLUSTER_NUMBER
+        description: "{{ doc('dim_cluster_number') }}"
+
+      - name: DIM_DATABASE_NAME
+        description: "{{ doc('dim_database_name') }}"
+
+      - name: DIM_END_DATETIME
+        description: "{{ doc('dim_end_datetime') }}"
+
+      - name: DIM_ERROR_CODE
+        description: "{{ doc('dim_error_code') }}"
+
+      - name: DIM_EXECUTION_STATUS
+        description: "{{ doc('dim_execution_status') }}"
+
+      - name: DIM_INCREMENTAL_STRATEGY_DBT
+        description: "{{ doc('dim_incremental_strategy_dbt') }}"
+
+      - name: DIM_MATERIALIZATION_DBT
+        description: "{{ doc('dim_materialization_dbt') }}"
+
+      - name: DIM_MODEL_NAME_DBT
+        description: "{{ doc('dim_model_name_dbt') }}"
+
+      - name: DIM_OUTBOUND_CLOUD_TRANSFER
+        description: "{{ doc('dim_outbound_cloud_transfer') }}"
+
+      - name: DIM_OUTBOUND_REGION_TRANSFER
+        description: "{{ doc('dim_outbound_region_transfer') }}"
+
+      - name: DIM_PACKAGE_NAME_DBT
+        description: "{{ doc('dim_package_name_dbt') }}"
+
+      - name: DIM_QUERY_TYPE
+        description: "{{ doc('dim_query_type') }}"
+
+      - name: DIM_RELEASE_VERSION
+        description: "{{ doc('dim_release_version') }}"
+
+      - name: DIM_ROLE_NAME
+        description: "{{ doc('dim_role_name') }}"
+
+      - name: DIM_ROLE_TYPE
+        description: "{{ doc('dim_role_type') }}"
+
+      - name: DIM_SCHEMA_NAME
+        description: "{{ doc('dim_schema_name') }}"
+
+      - name: DIM_START_DATETIME
+        description: "{{ doc('dim_start_datetime') }}"
+
+      - name: DIM_USER_NAME_DBT
+        description: "{{ doc('dim_user_name_dbt') }}"
+
+      - name: DIM_USER_NAME_SNOWFLAKE
+        description: "{{ doc('dim_user_name_snowflake') }}"
+
+      - name: DIM_WAREHOUSE_NAME
+        description: "{{ doc('dim_warehouse_name') }}"
+
+      - name: DIM_WAREHOUSE_SIZE
+        description: "{{ doc('dim_warehouse_size') }}"
+
+      - name: DIM_WAREHOUSE_TYPE
+        description: "{{ doc('dim_warehouse_type') }}"
+
+      - name: INFO_ERROR_MESSAGE
+        description: "{{ doc('info_error_message') }}"
+
+      - name: INFO_QUERY_HASH
+        description: "{{ doc('info_query_hash') }}"
+
+      - name: INFO_QUERY_HASH_VERSION
+        description: "{{ doc('info_query_hash_version') }}"
+
+      - name: INFO_QUERY_PARAMETERIZED_HASH
+        description: "{{ doc('info_query_parameterized_hash') }}"
+
+      - name: INFO_QUERY_PARAMETERIZED_HASH_VERSION
+        description: "{{ doc('info_query_parameterized_hash_version') }}"
+
+      - name: INFO_QUERY_RETRY_CAUSE
+        description: "{{ doc('info_query_retry_cause') }}"
+
+      - name: INFO_QUERY_TAG
+        description: "{{ doc('info_query_tag') }}"
+
+      - name: INFO_QUERY_TEXT
+        description: "{{ doc('info_query_text') }}"
+
+      - name: INFO_REFS_DBT
+        description: "{{ doc('info_refs_dbt') }}"
+
+      - name: INFO_SECONDARY_ROLE_STATS
+        description: "{{ doc('info_secondary_role_stats') }}"
+
+      - name: INFO_SOURCES_DBT
+        description: "{{ doc('info_sources_dbt') }}"
+
+      - name: INFO_TAGS_DBT
+        description: "{{ doc('info_tags_dbt') }}"
+
+      - name: IS_CLIENT_GENERATED_STATEMENT
+        description: "{{ doc('is_client_generated_statement') }}"
+
+      - name: IS_FULL_REFRESH
+        description: "{{ doc('is_full_refresh') }}"
+
+      - name: MET_BYTES_DELETED
+        description: "{{ doc('met_bytes_deleted') }}"
+
+      - name: MET_BYTES_READ_FROM_RESULT
+        description: "{{ doc('met_bytes_read_from_result') }}"
+
+      - name: MET_BYTES_SCANNED
+        description: "{{ doc('met_bytes_scanned') }}"
+
+      - name: MET_BYTES_SENT_OVER_NETWORK
+        description: "{{ doc('met_bytes_sent_over_network') }}"
+
+      - name: MET_BYTES_SPILLED_TO_LOCAL_STORAGE
+        description: "{{ doc('met_bytes_spilled_to_local_storage') }}"
+
+      - name: MET_BYTES_SPILLED_TO_REMOTE_STORAGE
+        description: "{{ doc('met_bytes_spilled_to_remote_storage') }}"
+
+      - name: MET_BYTES_WRITTEN
+        description: "{{ doc('met_bytes_written') }}"
+
+      - name: MET_BYTES_WRITTEN_TO_RESULT
+        description: "{{ doc('met_bytes_written_to_result') }}"
+
+      - name: MET_CHILD_QUERIES_WAIT_MILLIS
+        description: "{{ doc('met_child_queries_wait_millis') }}"
+
+      - name: MET_COMPILATION_MILLIS
+        description: "{{ doc('met_compilation_millis') }}"
+
+      - name: MET_CREDITS_USED_CLOUD
+        description: "{{ doc('met_credits_used_cloud') }}"
+
+      - name: MET_EXECUTION_MILLIS
+        description: "{{ doc('met_execution_millis') }}"
+
+      - name: MET_EXTERNAL_FUNCTION_INVOCATIONS
+        description: "{{ doc('met_external_function_invocations') }}"
+
+      - name: MET_EXTERNAL_FUNCTION_RECEIVED_BYTES
+        description: "{{ doc('met_external_function_received_bytes') }}"
+
+      - name: MET_EXTERNAL_FUNCTION_RECEIVED_ROWS
+        description: "{{ doc('met_external_function_received_rows') }}"
+
+      - name: MET_EXTERNAL_FUNCTION_SENT_BYTES
+        description: "{{ doc('met_external_function_sent_bytes') }}"
+
+      - name: MET_EXTERNAL_FUNCTION_SENT_ROWS
+        description: "{{ doc('met_external_function_sent_rows') }}"
+
+      - name: MET_FAULT_HANDLING_MILLIS
+        description: "{{ doc('met_fault_handling_millis') }}"
+
+      - name: MET_INBOUND_CLOUD_TRANSFER
+        description: "{{ doc('met_inbound_cloud_transfer') }}"
+
+      - name: MET_INBOUND_REGION_TRANSFER
+        description: "{{ doc('met_inbound_region_transfer') }}"
+
+      - name: MET_INBOUND_TRANSFER_BYTES
+        description: "{{ doc('met_inbound_transfer_bytes') }}"
+
+      - name: MET_LIST_EXTERNAL_FILES_MILLIS
+        description: "{{ doc('met_list_external_files_millis') }}"
+
+      - name: MET_OUTBOUND_TRANSFER_BYTES
+        description: "{{ doc('met_outbound_transfer_bytes') }}"
+
+      - name: MET_PARTITIONS_SCANNED
+        description: "{{ doc('met_partitions_scanned') }}"
+
+      - name: MET_PARTITIONS_TOTAL
+        description: "{{ doc('met_partitions_total') }}"
+
+      - name: MET_PERCENT_SCANNED_FROM_CACHE
+        description: "{{ doc('met_percent_scanned_from_cache') }}"
+
+      - name: MET_QUERY_ACCELERATION_BYTES_SCANNED
+        description: "{{ doc('met_query_acceleration_bytes_scanned') }}"
+
+      - name: MET_QUERY_ACCELERATION_PARTITIONS_SCANNED
+        description: "{{ doc('met_query_acceleration_partitions_scanned') }}"
+
+      - name: MET_QUERY_ACCELERATION_UPPER_LIMIT_SCALE_FACTOR
+        description: "{{ doc('met_query_acceleration_upper_limit_scale_factor') }}"
+
+      - name: MET_QUERY_LOAD_PERCENT
+        description: "{{ doc('met_query_load_percent') }}"
+
+      - name: MET_QUERY_RETRY_MILLIS
+        description: "{{ doc('met_query_retry_millis') }}"
+
+      - name: MET_QUEUED_OVERLOAD_MILLIS
+        description: "{{ doc('met_queued_overload_millis') }}"
+
+      - name: MET_QUEUED_PROVISIONING_MILLIS
+        description: "{{ doc('met_queued_provisioning_millis') }}"
+
+      - name: MET_ROWS_DELETED
+        description: "{{ doc('met_rows_deleted') }}"
+
+      - name: MET_ROWS_INSERTED
+        description: "{{ doc('met_rows_inserted') }}"
+
+      - name: MET_ROWS_PRODUCED
+        description: "{{ doc('met_rows_produced') }}"
+
+      - name: MET_ROWS_UNLOADED
+        description: "{{ doc('met_rows_unloaded') }}"
+
+      - name: MET_ROWS_UPDATED
+        description: "{{ doc('met_rows_updated') }}"
+
+      - name: MET_ROWS_WRITTEN_TO_RESULT
+        description: "{{ doc('met_rows_written_to_result') }}"
+
+      - name: MET_TOTAL_ELAPSED_MILLIS
+        description: "{{ doc('met_total_elapsed_millis') }}"
+
+      - name: MET_TRANSACTION_BLOCKED_MILLIS
+        description: "{{ doc('met_transaction_blocked_millis') }}"
+
+      - name: SF_DATABASE_ID
+        description: "{{ doc('sf_database_id') }}"
+
+      - name: SF_QUERY_ID
+        description: "{{ doc('sf_query_id') }}"
+        tests:
+          - unique
+          - not_null
+
+      - name: SF_SCHEMA_ID
+        description: "{{ doc('sf_schema_id') }}"
+
+      - name: SF_SESSION_ID
+        description: "{{ doc('sf_session_id') }}"
+
+      - name: SF_TRANSACTION_ID
+        description: "{{ doc('sf_transaction_id') }}"
+
+      - name: SF_WAREHOUSE_ID
+        description: "{{ doc('sf_warehouse_id') }}"
+  

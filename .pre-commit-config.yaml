@@ -1,0 +1,49 @@
+repos:
+  - repo: https://github.com/dbt-checkpoint/dbt-checkpoint
+    rev: v2.0.6
+    hooks:
+      - id: check-model-columns-have-desc
+      - id: check-model-has-description
+      - id: check-model-has-properties-file
+      - id: check-model-has-tests-by-name
+        args:
+          - "--tests"
+          - "unique=1"
+          - "not_null=1"
+          - --exclude
+          - "dbt_modules/|dbt_internal_packages/|dbt_packages/|logs/|macros/|notebooks/|seeds/|target/|tests/"
+          - "--"
+      - id: check-model-name-contract
+        args:
+          - --pattern
+          - "(bse_).*"
+        files: models/incoming_sources/
+      - id: check-model-name-contract
+        args:
+          - --pattern
+          - "(mrt_).*"
+        files: models/marts/
+      - id: check-model-tags
+        args:
+          - "--tags"
+          - "activity"
+          - "auth0"
+          - "base"
+          - "bridge"
+          - "entity"
+          - "fact"
+          - "iceberg"
+          - "incremental"
+          - "infrastructure"
+          - "intermediate"
+          - "marketing"
+          - "mart"
+          - "relt"
+          - "scd"
+          - "snowflake"
+          - "table"
+          - "users"
+          - "utility"
+          - "view"
+          - "web application"
+          - "--"
