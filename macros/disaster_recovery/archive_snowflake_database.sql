@@ -25,7 +25,7 @@
                 'span': 'days'|'weeks'|'months'|'years',
                 'periods': int, 'dbs_per_period': int
             }
-            Defaults to the production policy: 1/week for 8 weeks, then 1/month for a year.
+            Defaults to: daily for 1 week, then weekly for 8 weeks, then monthly for 1 year.
 
     Usage:
         dbt run-operation archive_snowflake_database --args '{source_database: MY_DATABASE}'
@@ -75,6 +75,7 @@
     {# 2. PRUNE: thin out archives that have aged past the retention windows  #}
     {# -------------------------------------------------------------------- #}
     {% set retention = retention_timeframes if retention_timeframes is not none else [
+        {'name': '1_week',  'span': 'days',   'periods': 7,  'dbs_per_period': 1},
         {'name': '8_weeks', 'span': 'weeks',  'periods': 8,  'dbs_per_period': 1},
         {'name': '1_year',  'span': 'months', 'periods': 12, 'dbs_per_period': 1}
     ] %}
